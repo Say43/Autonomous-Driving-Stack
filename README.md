@@ -1,12 +1,5 @@
 # Alpamayo-1.5 in CARLA: a slow-motion closed loop on consumer hardware
 
-[![tests](https://github.com/Say43/Autonomous-Driving-Stack/actions/workflows/tests.yml/badge.svg)](https://github.com/Say43/Autonomous-Driving-Stack/actions/workflows/tests.yml)
-[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![python 3.12](https://img.shields.io/badge/python-3.12-3776AB.svg)](pyproject.toml)
-[![CARLA 0.9.16](https://img.shields.io/badge/CARLA-0.9.16-orange.svg)](https://carla.org)
-[![model: Alpamayo-1.5-10B](https://img.shields.io/badge/model-Alpamayo--1.5--10B-76B900.svg)](https://huggingface.co/nvidia/Alpamayo-1.5-10B)
-[![inference: Kaggle 2×T4](https://img.shields.io/badge/inference-Kaggle%202%C3%97T4%2C%20NF4-20BEFF.svg)](notebooks/)
-
 An open, reproducible stack that lets NVIDIA's Alpamayo-1.5 vision-language-action model
 drive a vehicle in the CARLA simulator, built under a hard constraint: a laptop with a
 6 GB GPU that cannot host the 10B-parameter model. Inference runs on free Kaggle T4 GPUs
@@ -14,11 +7,6 @@ with a 4-bit backbone; the simulator pauses between decisions, so the loop is cl
 runs about forty times slower than real time. The repository documents the measurement
 chain from calibrated camera rig to trajectory, the transport that survives session
 limits and rate limits, what the model does in the simulator, and where it fails.
-
-<p align="center">
-  <img src="docs/img/quality_viewer_run6.png" alt="3D trace viewer showing the ego vehicle, the model's planned path and its reasoning text" width="820">
-  <br><em>Trace viewer, closed-loop run 6, t = 45 s: the model's path (blue) bends right while its reasoning says "nudge to the left".</em>
-</p>
 
 ## 1. Objective and scope
 
