@@ -61,6 +61,17 @@ test("sparse plans remain anchored between inference frames", () => {
 test("legacy trace does not invent static object coverage", () => {
   assert.equal(data.parse(trace([frame(0)])).staticRecorded, false);
 });
+
+test("model-origin plans stay anchored while the ego mesh stays at the actor", () => {
+  const first = frame(0);
+  first.model_pose_world = origin(-0.6);
+  const next = frame(1);
+  next.model_pose_world = origin(0.4);
+  const parsed = data.parse(trace([first, next]));
+  assert.deepEqual(parsed.frames[0].ego_pose_world.translation, [0, 0, 0]);
+  assert.deepEqual(parsed.frames[0].displayPlan.worldPoints[0], [0.4, -2, 0]);
+  assert.deepEqual(parsed.frames[1].displayPlan.worldPoints[0], [0.4, -2, 0]);
+});
 test("rotated inference pose projects left correctly", () => {
   const pose = {
     translation: [10, 20, 0],

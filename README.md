@@ -96,6 +96,12 @@ timer from a safe completion and from an unassisted model pass
 
 ## 3. Results
 
+**Reference-point correction:** camera-rig ego history, model-plan anchoring and
+rear-axle tracking now use explicit, distinct vehicle reference points. Old traces
+keep their original interpretation. The results below predate this correction;
+no new real-model improvement is claimed. See
+[geometry, regression tests and remaining assumptions](docs/vehicle_reference_frames.md).
+
 ### 3.1 Open loop (model observes, autopilot drives)
 
 Town10HD_Opt, seed 21, 60 s, 25 traffic vehicles, 20 packets every 2.1 s. All 20 plans

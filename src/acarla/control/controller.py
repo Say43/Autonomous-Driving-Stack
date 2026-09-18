@@ -7,7 +7,12 @@ from dataclasses import dataclass, field
 
 import numpy as np
 
-from acarla.control.frames import flu_points_to_world, world_points_to_flu
+from acarla.control.frames import (
+    offset_pose,
+    plan_reference_points,
+    plan_world_yaws,
+    world_points_to_flu,
+)
 from acarla.control.pid import PIDConfig, PIDController
 from acarla.control.pure_pursuit import PurePursuitConfig, pure_pursuit_steer
 from acarla.control.safety import SafetyCheck, SafetyLimits, check_trajectory
@@ -39,6 +44,9 @@ class ControllerConfig:
     pure_pursuit: PurePursuitConfig = field(default_factory=PurePursuitConfig)
     speed_pid: PIDConfig = field(default_factory=PIDConfig)
     safety: SafetyLimits = field(default_factory=SafetyLimits)
+    # CARLA-local offsets; appended so legacy positional arguments keep their meaning.
+    model_origin_in_actor: tuple[float, float, float] = (0.0, 0.0, 0.0)
+    rear_axle_in_actor: tuple[float, float, float] = (0.0, 0.0, 0.0)
 
 
 @dataclass(frozen=True)
@@ -59,6 +67,8 @@ class TrajectoryController:
         self._plan: PlanResult | None = None
         self._plan_time_s: float | None = None
         self._world_waypoints: np.ndarray | None = None
+        self._actor_waypoints: np.ndarray | None = None
+        self._world_yaws: np.ndarray | None = None
         self._plan_origin_xy = np.zeros(2, dtype=np.float64)
         self._safety = SafetyCheck(False, "no plan")
         self._last_steer = 0.0
@@ -69,13 +79,19 @@ class TrajectoryController:
 
     @property
     def world_waypoints(self) -> np.ndarray | None:
-        """Accepted, world-anchored path for the independent simulator supervisor."""
-        return self._world_waypoints
+        """Actor-origin path for footprint checks, NOT the rear-axle tracking path."""
+        return self._actor_waypoints
 
     def invalidate_plan(self, reason: str) -> None:
         self._world_waypoints = None
+        self._actor_waypoints = None
+        self._world_yaws = None
         self._safety = SafetyCheck(False, reason)
         self._pid.reset()
+
+    @property
+    def world_yaws(self) -> np.ndarray | None:
+        return self._world_yaws
 
     def reset_after_override(self) -> None:
         """Avoid integral wind-up while an external layer holds the brake."""
@@ -91,10 +107,19 @@ class TrajectoryController:
         self._safety = safety
         self._plan = plan
         self._plan_time_s = float(sim_time_s)
+        model_offset = np.asarray(self.config.model_origin_in_actor)
+        rear_offset = np.asarray(self.config.rear_axle_in_actor)
+        model_pose = offset_pose(origin_world, model_offset)
         self._world_waypoints = (
-            flu_points_to_world(plan.waypoints_xyz, origin_world) if safety.safe else None
+            plan_reference_points(plan, model_pose, rear_offset - model_offset)
+            if safety.safe
+            else None
         )
-        self._plan_origin_xy = origin_world.translation[:2].astype(np.float64).copy()
+        self._actor_waypoints = (
+            plan_reference_points(plan, model_pose, -model_offset) if safety.safe else None
+        )
+        self._world_yaws = plan_world_yaws(plan, model_pose) if safety.safe else None
+        self._plan_origin_xy = offset_pose(origin_world, rear_offset).translation[:2].copy()
         return safety
 
     def _fault(self, reason: str, plan_age_s: float | None, dt: float) -> ControlDecision:
@@ -171,7 +196,9 @@ class TrajectoryController:
                 dt,
             )
 
-        current_path = world_points_to_flu(self._world_waypoints, ego_world)
+        # Pure Pursuit's bicycle geometry is defined at the rear axle.
+        rear_pose = offset_pose(ego_world, self.config.rear_axle_in_actor)
+        current_path = world_points_to_flu(self._world_waypoints, rear_pose)
         try:
             desired_steer = pure_pursuit_steer(
                 current_path, current_speed_mps, self.config.pure_pursuit
@@ -189,7 +216,7 @@ class TrajectoryController:
         )
         self._last_steer = steer
 
-        target_speed = self._progress_speed_target(ego_world, age)
+        target_speed = self._progress_speed_target(rear_pose, age)
         curvature = abs(
             math.tan(desired_steer * self.config.pure_pursuit.max_steer_angle_rad)
             / self.config.pure_pursuit.wheelbase_m

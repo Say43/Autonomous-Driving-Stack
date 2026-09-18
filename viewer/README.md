@@ -48,6 +48,9 @@ Older lane widths default to 3.5 m for display only; lines approximate lane geom
 not individually recorded road-marking paint.
 
 Repeated plans stay anchored to `plan.frame_id` and that frame's original ego pose.
+For new reference-corrected traces the anchor is its explicit `model_pose_world`,
+while the vehicle mesh remains at `ego_pose_world`. Legacy recordings without the
+new field retain their original actor-origin interpretation.
 FLU-left is reflected into CARLA-right exactly once. Missing plan origins cause a visible
 warning; those paths are not reanchored to an unrelated pose. Reasoning shows its actual
 source frame and age; a path is hidden after its 6.4 s horizon expires.

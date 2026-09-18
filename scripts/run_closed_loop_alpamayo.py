@@ -58,7 +58,9 @@ from acarla.adapter.packet import build_sensor_packet  # noqa: E402
 from acarla.control import ControllerConfig, TrajectoryController  # noqa: E402
 from acarla.control.aeb import AebConfig, apply_aeb, check_forward_corridor  # noqa: E402
 from acarla.control.evaluation import evaluate_run  # noqa: E402
+from acarla.control.frames import offset_pose  # noqa: E402
 from acarla.control.supervisor import (  # noqa: E402
+    SupervisorConfig,
     SupervisorDecision,
     check_environment,
     footprint_is_drivable,
@@ -214,6 +216,7 @@ def _config_hash(args: argparse.Namespace) -> str:
                 )
             ),
             "safety_revision": "environment-footprint-v1",
+            "vehicle_frame_revision": "camera-rig-model-origin-and-rear-axle-v1",
             "aeb": not args.no_aeb,
             "supervisor": not args.no_supervisor,
             "rig_shift_x": (
@@ -384,6 +387,16 @@ def main(argv: list[str] | None = None) -> int:
             attached = [
                 apply_offset(apply_offset(s, offset), np.array([shift_x, 0.0, 0.0])) for s in specs
             ]
+            # The virtual model origin follows the ENTIRE camera rig, including
+            # the mesh clearance shift. The physical rear-axle estimate does not.
+            model_offset = offset + np.array([shift_x, 0.0, 0.0])
+            vehicle_geometry = {
+                "revision": "camera-rig-model-origin-and-rear-axle-v1",
+                "model_origin_in_actor": model_offset.tolist(),
+                "rear_axle_in_actor": offset.tolist(),
+                "rear_axle_source": "configured rig rear-axle hypothesis; not wheel measurement",
+            }
+            supervisor_config = SupervisorConfig(rear_axle_in_actor=tuple(offset))
             (args.out / "rig_used.json").write_text(
                 json.dumps(
                     {
@@ -391,6 +404,7 @@ def main(argv: list[str] | None = None) -> int:
                         "vehicle_blueprint": args.vehicle,
                         "applied_offset": [float(v) for v in offset],
                         "vehicle_mesh_shift_x": float(shift_x),
+                        "vehicle_geometry": vehicle_geometry,
                         "cameras": [
                             {
                                 "name": s.name,
@@ -429,6 +443,7 @@ def main(argv: list[str] | None = None) -> int:
                 cameras=camera_names,
                 fixed_delta_seconds=dt_s,
                 environment_objects=scene.objects,
+                vehicle_geometry=vehicle_geometry,
             )
             q.start_run(
                 run_id,
@@ -448,6 +463,8 @@ def main(argv: list[str] | None = None) -> int:
                 ControllerConfig(
                     replan_interval_s=args.replan_interval,
                     max_plan_age_s=args.replan_interval + 0.25,
+                    model_origin_in_actor=tuple(model_offset),
+                    rear_axle_in_actor=tuple(offset),
                 )
             )
             current_plan: PlanResult | None = None
@@ -502,7 +519,8 @@ def main(argv: list[str] | None = None) -> int:
 
                     ego_transform = ego.get_transform()
                     ego_pose = groundtruth.transform_to_pose(ego_transform)
-                    ego_hist.append((sim_time, ego_pose))
+                    model_pose = offset_pose(ego_pose, model_offset)
+                    ego_hist.append((sim_time, model_pose))
 
                     due = (
                         last_plan_time is None
@@ -629,6 +647,7 @@ def main(argv: list[str] | None = None) -> int:
                                         "round_trip_s": round_trip,
                                     },
                                     "ego_pose_world": ego_pose.to_json_dict(),
+                                    "model_pose_world": model_pose.to_json_dict(),
                                 }
                             )
                             (args.out / "plans.json").write_text(
@@ -693,6 +712,8 @@ def main(argv: list[str] | None = None) -> int:
                             actors_now + static_now,
                             is_drivable,
                             ego_box,
+                            supervisor_config,
+                            world_yaws=controller.world_yaws,
                         )
                         if supervised.brake:
                             command = ControlCommand(command.steer, 0.0, 1.0)
@@ -740,6 +761,7 @@ def main(argv: list[str] | None = None) -> int:
                             frame_id=local_frame,
                             sim_time=sim_time,
                             ego_pose_world=ego_pose,
+                            model_pose_world=model_pose,
                             actors=actors_now,
                             lanes=scene.lanes(loc, GROUND_TRUTH_RADIUS_M),
                             traffic_lights=groundtruth.traffic_light_states(

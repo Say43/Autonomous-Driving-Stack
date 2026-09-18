@@ -66,6 +66,7 @@
         const f = {
           ...d,
           ego_pose_world: pose(d.ego_pose_world),
+          model_pose_world: d.model_pose_world ? pose(d.model_pose_world) : null,
           actors: (d.actors ?? []).map(actor),
           lanes: (d.lanes ?? []).map((l) => ({
             ...l,
@@ -105,10 +106,10 @@
           // Repeated plans must keep the inference-frame pose, never the current ego pose.
           if (!f.plan.worldPoints) {
             f.plan.worldPoints = f.plan.waypoints_xyz.map((p) =>
-              worldPoint(p, origin.ego_pose_world, true),
+              worldPoint(p, origin.model_pose_world ?? origin.ego_pose_world, true),
             );
             f.plan.originTime = origin.sim_time;
-            f.plan.originPose = origin.ego_pose_world;
+            f.plan.originPose = origin.model_pose_world ?? origin.ego_pose_world;
           }
           latest = f.plan;
           if (typeof f.plan.reasoning === "string" && f.plan.reasoning.trim())

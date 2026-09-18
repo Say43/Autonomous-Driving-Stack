@@ -18,8 +18,8 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from acarla.control.frames import flu_points_to_world  # noqa: E402
-from acarla.control.supervisor import check_environment  # noqa: E402
+from acarla.control.frames import plan_reference_points, plan_world_yaws  # noqa: E402
+from acarla.control.supervisor import SupervisorConfig, check_environment  # noqa: E402
 from acarla.record.reader import read_trace  # noqa: E402
 from acarla.sim.groundtruth import SceneCache, make_drivable_check  # noqa: E402
 from acarla.types import BoundingBox  # noqa: E402
@@ -63,10 +63,30 @@ def main():
         source = by_id.get(f.plan.frame_id)
         if source is None:
             continue
-        path = flu_points_to_world(f.plan.waypoints_xyz, source.ego_pose_world)
+        # Derive the offset from the recorded poses, never retrofit a new rig
+        # onto a legacy plan. Such a plan was generated in the actor frame.
+        model_pose = source.inference_pose_world
+        model_to_actor = model_pose.rotation.T @ (
+            source.ego_pose_world.translation - model_pose.translation
+        )
+        path = plan_reference_points(f.plan, model_pose, model_to_actor)
         static = scene.nearby(f.ego_pose_world.translation)
         decision = check_environment(
-            f.ego_pose_world, speed, f.control, path, f.actors + static, drivable, ego_box
+            f.ego_pose_world,
+            speed,
+            f.control,
+            path,
+            f.actors + static,
+            drivable,
+            ego_box,
+            SupervisorConfig(
+                rear_axle_in_actor=tuple(
+                    header.vehicle_geometry.get("rear_axle_in_actor", (0.0, 0.0, 0.0))
+                )
+            ),
+            world_yaws=(
+                plan_world_yaws(f.plan, model_pose) if source.model_pose_world is not None else None
+            ),
         )
         decisions.append(
             {"frame_id": f.frame_id, "sim_time": f.sim_time, "speed_mps": speed, **asdict(decision)}

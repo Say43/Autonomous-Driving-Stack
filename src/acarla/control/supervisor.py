@@ -34,6 +34,7 @@ class SupervisorConfig:
     part stands at the kerb (run 7 deadlocked on a 3.8 m x 7.8 m street light
     box 2.4 m ahead). Such boxes are skipped; kerb masts are still covered by
     the driving-lane containment test."""
+    rear_axle_in_actor: tuple[float, float, float] = (0.0, 0.0, 0.0)
 
 
 @dataclass(frozen=True)
@@ -76,22 +77,27 @@ def boxes_overlap(c1, r1, e1, c2, r2, e2) -> bool:
     return True
 
 
-def _path_samples(ego: Pose, command: ControlCommand, world_path, horizon, cfg):
+def _path_samples(ego: Pose, command: ControlCommand, world_path, horizon, cfg, world_yaws=None):
     origin = ego.translation.astype(float)
     yaw = math.atan2(ego.rotation[1, 0], ego.rotation[0, 0])
+    # Roll the bicycle at its rear axle, then recover the actor origin whose
+    # bounding box is tested below. A shifted rig is NOT the physical pivot.
+    rear_offset = np.asarray(cfg.rear_axle_in_actor, dtype=float)[:2]
+    rear_origin = origin[:2] + _rotation(yaw) @ rear_offset
     distances = np.arange(0, horizon + cfg.sample_m, cfg.sample_m)
     curvature = math.tan(command.steer * cfg.max_steer_angle_rad) / cfg.wheelbase_m
     # Bicycle rollout for the applied steering catches tracking drift as well as bad plans.
     for distance in distances:
         angle = yaw + curvature * distance
         if abs(curvature) < 1e-7:
-            xy = origin[:2] + distance * np.array([math.cos(yaw), math.sin(yaw)])
+            xy = rear_origin + distance * np.array([math.cos(yaw), math.sin(yaw)])
         else:
             xy = (
-                origin[:2]
+                rear_origin
                 + np.array([math.sin(angle) - math.sin(yaw), math.cos(yaw) - math.cos(angle)])
                 / curvature
             )
+        xy = xy - _rotation(angle) @ rear_offset
         yield distance, np.array([*xy, origin[2]]), angle, "steering"
     if world_path is None or len(world_path) < 2:
         return
@@ -110,6 +116,13 @@ def _path_samples(ego: Pose, command: ControlCommand, world_path, horizon, cfg):
     path = np.concatenate(([origin], [start], points[idx + 1 :]))
     lengths = np.linalg.norm(np.diff(path[:, :2], axis=0), axis=1)
     arcs = np.concatenate(([0.0], np.cumsum(lengths)))
+    headings = None
+    if world_yaws is not None:
+        predicted = np.unwrap(np.asarray(world_yaws, dtype=float))
+        if predicted.shape != (len(points),) or not np.isfinite(predicted).all():
+            raise ValueError("world_yaws must match world_path and be finite")
+        start_yaw = predicted[idx] + fractions[idx] * (predicted[idx + 1] - predicted[idx])
+        headings = np.unwrap(np.concatenate(([yaw, start_yaw], predicted[idx + 1 :])))
     for distance in distances[1:]:
         if distance > arcs[-1]:
             break
@@ -118,7 +131,12 @@ def _path_samples(ego: Pose, command: ControlCommand, world_path, horizon, cfg):
             continue
         point = path[j] + (distance - arcs[j]) / lengths[j] * (path[j + 1] - path[j])
         delta = path[j + 1] - path[j]
-        yield distance, point, math.atan2(delta[1], delta[0]), "plan"
+        body_yaw = (
+            math.atan2(delta[1], delta[0])
+            if headings is None
+            else float(np.interp(distance, arcs, headings))
+        )
+        yield distance, point, body_yaw, "plan"
 
 
 def check_environment(
@@ -130,6 +148,8 @@ def check_environment(
     is_drivable: Callable[[np.ndarray], bool],
     ego_box: BoundingBox,
     config: SupervisorConfig | None = None,
+    *,
+    world_yaws: np.ndarray | None = None,
 ) -> SupervisorDecision:
     cfg = config or SupervisorConfig()
     if not math.isfinite(speed_mps) or speed_mps < 0:
@@ -169,7 +189,9 @@ def check_environment(
             continue
         actor_yaw = math.atan2(actor.transform.rotation[1, 0], actor.transform.rotation[0, 0])
         prepared.append((actor, center[:2], _rotation(actor_yaw)))
-    samples = sorted(_path_samples(ego, command, world_path, horizon, cfg), key=lambda p: p[0])
+    samples = sorted(
+        _path_samples(ego, command, world_path, horizon, cfg, world_yaws), key=lambda p: p[0]
+    )
     for distance, point, yaw, source in samples:
         rot = _rotation(yaw)
         center = point[:2] + rot @ ego_box.location[:2]

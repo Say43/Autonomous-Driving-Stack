@@ -31,6 +31,7 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
+from acarla.control.frames import offset_pose  # noqa: E402
 from acarla.record.writer import TraceWriter  # noqa: E402
 from acarla.sim import groundtruth  # noqa: E402
 from acarla.sim.attach import apply_offset, rig_to_actor_offset  # noqa: E402
@@ -219,6 +220,8 @@ def main(argv: list[str] | None = None) -> int:
             "vehicle_blueprint": args.vehicle,
             "attach_offset_mode": args.attach_offset,
         }
+        model_offset = np.zeros(3)
+        rear_offset = np.zeros(3)
 
         if args.attach_offset == "auto" and specs:
             bbox = ego.bounding_box
@@ -240,6 +243,8 @@ def main(argv: list[str] | None = None) -> int:
             if shift_x:
                 specs = [apply_offset(spec, np.array([shift_x, 0.0, 0.0])) for spec in specs]
             rig_used["vehicle_mesh_shift_x"] = float(shift_x)
+            model_offset = offset + np.array([shift_x, 0.0, 0.0])
+            rear_offset = offset
             print(
                 "attach-offset auto: measured bounding_box.extent="
                 f"({extent.x:.4f}, {extent.y:.4f}, {extent.z:.4f}), "
@@ -258,6 +263,13 @@ def main(argv: list[str] | None = None) -> int:
             rig_used["applied_offset"] = None
             rig_used["vehicle_mesh_shift_x"] = 0.0
 
+        vehicle_geometry = {
+            "revision": "camera-rig-model-origin-and-rear-axle-v1",
+            "model_origin_in_actor": model_offset.tolist(),
+            "rear_axle_in_actor": rear_offset.tolist(),
+            "rear_axle_source": "configured rig hypothesis or unshifted recording",
+        }
+        rig_used["vehicle_geometry"] = vehicle_geometry
         rig_used["cameras"] = [
             {
                 "name": s.name,
@@ -295,6 +307,7 @@ def main(argv: list[str] | None = None) -> int:
             cameras=[s.name for s in specs],
             fixed_delta_seconds=session.fixed_delta_seconds,
             environment_objects=scene.objects,
+            vehicle_geometry=vehicle_geometry,
         )
 
         expected_camera_names = list(cameras.keys())
@@ -339,6 +352,7 @@ def main(argv: list[str] | None = None) -> int:
                     frame_id=local_frame,
                     sim_time=round(local_frame * session.fixed_delta_seconds, 6),
                     ego_pose_world=ego_pose,
+                    model_pose_world=offset_pose(ego_pose, model_offset),
                     actors=groundtruth.actor_states(session.world, ego.id, GROUND_TRUTH_RADIUS_M),
                     lanes=scene.lanes(ego_location, GROUND_TRUTH_RADIUS_M),
                     traffic_lights=groundtruth.traffic_light_states(

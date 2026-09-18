@@ -130,21 +130,17 @@ def build_model_inputs(
             for tick_idx in image_tick_positions:
                 frame = frames[tick_idx]
                 rel_path = frame.image_paths[cam][0]
-                imgs.append(
-                    _load_and_remap_image(run_dir, rel_path, ftheta, pinhole, map_x, map_y)
-                )
+                imgs.append(_load_and_remap_image(run_dir, rel_path, ftheta, pinhole, map_x, map_y))
                 ts.append(round(frame.sim_time, 6))
             frames_hwc[cam] = np.stack(imgs, axis=0)
             image_timestamps[cam] = ts
 
-        ego_tick_indices = [
-            idx - k * _EGO_STRIDE for k in range(N_EGO_WAYPOINTS - 1, -1, -1)
-        ]
+        ego_tick_indices = [idx - k * _EGO_STRIDE for k in range(N_EGO_WAYPOINTS - 1, -1, -1)]
         world_xyz = np.zeros((N_EGO_WAYPOINTS, 3), dtype=np.float64)
         world_quat_xyzw = np.zeros((N_EGO_WAYPOINTS, 4), dtype=np.float64)
         ego_timestamps: list[float] = []
         for row, tick_idx in enumerate(ego_tick_indices):
-            pose = frames[tick_idx].ego_pose_world
+            pose = frames[tick_idx].inference_pose_world
             world_xyz[row] = carla_to_rig_xyz(pose.translation.astype(np.float64))
             r_rig = carla_rotation_to_rig_rotation(pose.rotation.astype(np.float64))
             world_quat_xyzw[row] = Rotation.from_matrix(r_rig).as_quat()
@@ -205,9 +201,7 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run", required=True, type=Path, help="recorded run directory")
     parser.add_argument("--out", required=True, type=Path, help="output .npz path")
-    parser.add_argument(
-        "--every", type=int, default=1, help="use every Nth eligible image tick"
-    )
+    parser.add_argument("--every", type=int, default=1, help="use every Nth eligible image tick")
     parser.add_argument(
         "--max-packets", type=int, default=None, help="cap the number of packets built"
     )

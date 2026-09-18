@@ -533,6 +533,7 @@ class RunHeader:
     cameras: list[str]
     fixed_delta_seconds: float
     environment_objects: list[ActorState] | None = None
+    vehicle_geometry: dict[str, Any] = field(default_factory=dict)
 
     def to_json_dict(self) -> dict[str, Any]:
         result = {
@@ -549,6 +550,8 @@ class RunHeader:
         }
         if self.environment_objects is not None:
             result["environment_objects"] = [a.to_json_dict() for a in self.environment_objects]
+        if self.vehicle_geometry:
+            result["vehicle_geometry"] = dict(self.vehicle_geometry)
         return result
 
     @staticmethod
@@ -569,6 +572,7 @@ class RunHeader:
                 if "environment_objects" in d
                 else None
             ),
+            vehicle_geometry=dict(d.get("vehicle_geometry", {})),
         )
 
 
@@ -593,6 +597,13 @@ class TraceFrame:
     control: ControlCommand
     image_paths: dict[str, list[str]] = field(default_factory=dict)
     diagnostics: dict[str, Any] = field(default_factory=dict)
+    # Camera-rig/model origin, distinct from the actor used to draw the vehicle.
+    # Absent in legacy traces: those plans were anchored at ego_pose_world.
+    model_pose_world: Pose | None = None
+
+    @property
+    def inference_pose_world(self) -> Pose:
+        return self.model_pose_world if self.model_pose_world is not None else self.ego_pose_world
 
     def to_json_dict(self) -> dict[str, Any]:
         """Serialize to a JSON-compatible dict (numpy arrays -> nested lists)."""
@@ -609,6 +620,8 @@ class TraceFrame:
         }
         if self.diagnostics:
             result["diagnostics"] = dict(self.diagnostics)
+        if self.model_pose_world is not None:
+            result["model_pose_world"] = self.model_pose_world.to_json_dict()
         return result
 
     @staticmethod
@@ -625,4 +638,9 @@ class TraceFrame:
             control=ControlCommand.from_json_dict(d["control"]),
             image_paths={k: list(v) for k, v in d["image_paths"].items()},
             diagnostics=dict(d.get("diagnostics", {})),
+            model_pose_world=(
+                Pose.from_json_dict(d["model_pose_world"])
+                if d.get("model_pose_world") is not None
+                else None
+            ),
         )
