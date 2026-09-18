@@ -18,5 +18,12 @@ in this repository; they are obtained at run time under their own licences.
   (https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles), NVIDIA
   Autonomous Vehicle Dataset License. No part of the dataset, no calibration values
   derived from it and no benchmarking results on it are contained in this repository.
-- CARLA 0.9.16 (https://carla.org), MIT License (simulator) and CC-BY (assets);
-  images and ground truth in results/ and docs/img/ are CARLA renders.
+- CARLA 0.9.16 (https://carla.org, https://github.com/carla-simulator/carla),
+  Copyright (c) 2017 Computer Vision Center (CVC) at the Universitat Autonoma de
+  Barcelona (UAB). The simulator code is under the MIT License; the CARLA-specific
+  assets (maps such as Town10HD_Opt, vehicle and prop models) are distributed under a
+  Creative Commons Attribution (CC-BY) licence, as stated in the CARLA README
+  (https://github.com/carla-simulator/carla#licenses; version not specified upstream).
+  The images in docs/img/ and the ground truth in results/ are renders of those assets
+  and are redistributed here under the same CC-BY terms with this attribution:
+  "CARLA assets (c) Computer Vision Center, UAB, CC-BY, https://carla.org".

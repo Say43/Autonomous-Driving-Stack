@@ -11,7 +11,7 @@ component, its licence, and what that means for what is (not) published here.
 | [Alpamayo-1.5-10B weights](https://huggingface.co/nvidia/Alpamayo-1.5-10B) | OpenMDW-1.1 | Downloaded at run time by the Kaggle worker. Model outputs on CARLA imagery (trajectories, reasoning text) are published in `results/`. |
 | [Cosmos-Reason2-8B](https://huggingface.co/nvidia/Cosmos-Reason2-8B) (backbone) | NVIDIA Open Model License, gated | Access must be requested on Hugging Face; the token is read from a Kaggle secret and never stored in this repository. |
 | [PhysicalAI-AV dataset](https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles) | NVIDIA Autonomous Vehicle Dataset License, gated | Section 4.6 prohibits distributing any part of the dataset; section 3 treats benchmarking results on it as confidential. **Not published:** the calibration tables (`golden/m2_reference/*.csv`), the generated rig file `configs/rig_alpamayo.yaml`, per-run `rig_used.json` files, the reference camera frame, the M0/M2 golden files, and the minADE figure of the M0 feasibility run. |
-| [CARLA 0.9.16](https://carla.org) | MIT (simulator), assets CC-BY | Recordings, renders and ground truth in `results/` and `docs/img/` are CARLA content. |
+| [CARLA 0.9.16](https://carla.org) | MIT (simulator), assets CC-BY, (c) Computer Vision Center (CVC), UAB | Recordings, renders and ground truth in `results/` and `docs/img/` are renders of CC-BY CARLA assets and carry the attribution given in `NOTICE`. |
 
 ## What you need to reproduce the dataset-dependent parts
 
