@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "milestone": "M4",
+  "status": "passed",
+  "implementation_commit": "935011692986da3d853739447cb4f97cb9a02bda",
+  "environment": {
+    "carla_version": "0.9.16",
+    "map": "Town01",
+    "gpu": "NVIDIA GeForce GTX 1660 Ti Max-Q",
+    "gpu_memory_mib": 6144,
+    "fixed_delta_seconds": 0.05
+  },
+  "quality_checks": {
+    "pytest": "73 passed",
+    "ruff": "All checks passed"
+  },
+  "camera_smoke": {
+    "local_trace": "results/m4_smoke_png/trace.jsonl",
+    "trace_sha256": "7bcb49a2845ea1c898a5f7ce6d3a69d46a7955917dd74395ea76d57aad6f4b64",
+    "frame_payload_sha256": "06b8a9be4cb9de7b95cd4b21c3e5d7b8438f180b0eebb6ae8044cd7479b0851d",
+    "frames": 100,
+    "camera_sets": 50,
+    "cameras_per_set": 4,
+    "png_files": 200,
+    "png_bytes": 512824691,
+    "bad_png_signatures": 0,
+    "actor_frames": 0,
+    "traffic_light_frames": 0,
+    "note": "The short seed-1 route contains no nearby actors or traffic lights; ground-truth extraction is covered by the separate 600-tick run."
+  },
+  "ground_truth_run": {
+    "local_trace": "results/m4_gt_check/trace.jsonl",
+    "trace_sha256": "bf0e38dce6c8f5976c0865cd1925a844aa1c1fe95b3dac96a325f96787927c17",
+    "frame_payload_sha256": "8767acf13568d3dc90baf6549ebc0d5d556237472e7723fd91911e11c8340478",
+    "frames": 600,
+    "actor_frames": 313,
+    "max_actors": 4,
+    "traffic_light_frames": 352,
+    "max_traffic_lights": 3
+  },
+  "determinism": {
+    "method": "Two 100-tick, no-image runs with seed 1; compare every serialized TraceFrame line. Header run_timestamp is excluded.",
+    "run_a": "results/m4_det_a/trace.jsonl",
+    "run_b": "results/m4_det_b/trace.jsonl",
+    "run_a_sha256": "858e80ea7a18e1895f90e5a83e4b854e8c9c33356eb7a612c0361d305596de8f",
+    "run_b_sha256": "27c8075a33d0865fb3e4214d16af5a3f816d56d56e9641da6b7b1ddd736ecb1b",
+    "shared_frame_payload_sha256": "76c5717f8d42d1f9a71e2f47b15b6ade3e10cded689ba2cd35bc299e67339d0e",
+    "all_frame_lines_identical": true
+  },
+  "cleanup": {
+    "vehicles_after_run": 0,
+    "walkers_after_run": 0,
+    "sensors_after_run": 0,
+    "synchronous_mode_after_run": false
+  },
+  "limitations": [
+    "The rig is explicitly provisional until M1 can extract the real PhysicalAI AV calibration.",
+    "Large trace and image artifacts are intentionally gitignored; this file preserves their paths, measurements, and hashes.",
+    "M4 validates CARLA recording only. It does not make the still-blocked Alpamayo M0 inference gate pass."
+  ]
+}

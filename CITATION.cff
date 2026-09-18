@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "Alpamayo-1.5 in CARLA: a slow-motion closed loop on consumer hardware"
+authors:
+  - name: "Say43"
+year: 2026
+url: "https://github.com/Say43/Autonomous-Driving-Stack"
+license: MIT

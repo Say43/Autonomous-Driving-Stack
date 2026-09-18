@@ -1,0 +1,541 @@
+{
+  "kind": "off_policy_replay_audit",
+  "closed_loop_pass": false,
+  "limitation": "Interventions on recorded states do not prove the subsequent closed loop safe.",
+  "source_trace": "C:\\Festplatte (D)\\Dateien\\AI\\Atonomousdrivingstack\\alpamayo-carla\\results\\loop_town10_seed21_run6_speedbound\\trace.jsonl",
+  "map": "Carla/Maps/Town10HD_Opt",
+  "static_objects": 66120,
+  "checked_frames": 58,
+  "brake_frames": 45,
+  "reasons": {
+    "steering: obstacle static.dynamic": 5,
+    "steering: obstacle vehicle.lincoln.mkz_2020": 10,
+    "steering: obstacle static.poles": 2,
+    "steering: footprint leaves driving lanes": 27,
+    "steering: obstacle static.vegetation": 1
+  },
+  "decisions": [
+    {
+      "frame_id": 41,
+      "sim_time": 2.05,
+      "speed_mps": 0.0,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 61,
+      "sim_time": 3.05,
+      "speed_mps": 2.2873282432556152e-05,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 81,
+      "sim_time": 4.05,
+      "speed_mps": 0.0,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 101,
+      "sim_time": 5.05,
+      "speed_mps": 2.0820202827453613,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 121,
+      "sim_time": 6.05,
+      "speed_mps": 7.59243106842041,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 141,
+      "sim_time": 7.05,
+      "speed_mps": 7.595913410186768,
+      "brake": true,
+      "reason": "steering: obstacle static.dynamic",
+      "hazard_distance_m": 8.8,
+      "object_id": -32405
+    },
+    {
+      "frame_id": 161,
+      "sim_time": 8.05,
+      "speed_mps": 5.032472133636475,
+      "brake": true,
+      "reason": "steering: obstacle static.dynamic",
+      "hazard_distance_m": 2.8000000000000003,
+      "object_id": -32405
+    },
+    {
+      "frame_id": 181,
+      "sim_time": 9.05,
+      "speed_mps": 3.9653313159942627,
+      "brake": true,
+      "reason": "steering: obstacle static.dynamic",
+      "hazard_distance_m": 0.0,
+      "object_id": -32405
+    },
+    {
+      "frame_id": 201,
+      "sim_time": 10.05,
+      "speed_mps": 3.897434949874878,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 4.4,
+      "object_id": 143
+    },
+    {
+      "frame_id": 221,
+      "sim_time": 11.05,
+      "speed_mps": 0.07458093762397766,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 2.8000000000000003,
+      "object_id": 143
+    },
+    {
+      "frame_id": 241,
+      "sim_time": 12.05,
+      "speed_mps": 0.7514084577560425,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 2.0,
+      "object_id": 143
+    },
+    {
+      "frame_id": 261,
+      "sim_time": 13.05,
+      "speed_mps": 0.4118483364582062,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 1.6,
+      "object_id": 143
+    },
+    {
+      "frame_id": 281,
+      "sim_time": 14.05,
+      "speed_mps": 0.12517115473747253,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 1.6,
+      "object_id": 143
+    },
+    {
+      "frame_id": 301,
+      "sim_time": 15.05,
+      "speed_mps": 0.01760254055261612,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 1.6,
+      "object_id": 143
+    },
+    {
+      "frame_id": 321,
+      "sim_time": 16.05,
+      "speed_mps": 0.0018377655651420355,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 1.6,
+      "object_id": 143
+    },
+    {
+      "frame_id": 341,
+      "sim_time": 17.05,
+      "speed_mps": 1.5628536939620972,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 1.6,
+      "object_id": 143
+    },
+    {
+      "frame_id": 361,
+      "sim_time": 18.05,
+      "speed_mps": 5.128427028656006,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 2.0,
+      "object_id": 143
+    },
+    {
+      "frame_id": 381,
+      "sim_time": 19.05,
+      "speed_mps": 1.6163089275360107,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 1.2000000000000002,
+      "object_id": 143
+    },
+    {
+      "frame_id": 401,
+      "sim_time": 20.05,
+      "speed_mps": 0.6862702369689941,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 421,
+      "sim_time": 21.05,
+      "speed_mps": 5.386143207550049,
+      "brake": true,
+      "reason": "steering: obstacle static.poles",
+      "hazard_distance_m": 5.2,
+      "object_id": -40769
+    },
+    {
+      "frame_id": 441,
+      "sim_time": 22.05,
+      "speed_mps": 9.511602401733398,
+      "brake": true,
+      "reason": "steering: obstacle static.poles",
+      "hazard_distance_m": 0.0,
+      "object_id": -40769
+    },
+    {
+      "frame_id": 461,
+      "sim_time": 23.05,
+      "speed_mps": 9.809212684631348,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 481,
+      "sim_time": 24.05,
+      "speed_mps": 9.817299842834473,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 501,
+      "sim_time": 25.05,
+      "speed_mps": 9.817595481872559,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 521,
+      "sim_time": 26.05,
+      "speed_mps": 9.519925117492676,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 541,
+      "sim_time": 27.05,
+      "speed_mps": 9.491931915283203,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 561,
+      "sim_time": 28.05,
+      "speed_mps": 9.810490608215332,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 581,
+      "sim_time": 29.05,
+      "speed_mps": 8.21999454498291,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 601,
+      "sim_time": 30.05,
+      "speed_mps": 9.51003360748291,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 621,
+      "sim_time": 31.05,
+      "speed_mps": 9.808406829833984,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 641,
+      "sim_time": 32.05,
+      "speed_mps": 9.811979293823242,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 661,
+      "sim_time": 33.05,
+      "speed_mps": 9.797727584838867,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 681,
+      "sim_time": 34.05,
+      "speed_mps": 9.802077293395996,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 701,
+      "sim_time": 35.05,
+      "speed_mps": 9.810229301452637,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 721,
+      "sim_time": 36.05,
+      "speed_mps": 9.814480781555176,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 741,
+      "sim_time": 37.05,
+      "speed_mps": 9.501700401306152,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 761,
+      "sim_time": 38.05,
+      "speed_mps": 4.060204029083252,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 781,
+      "sim_time": 39.05,
+      "speed_mps": 1.9434541463851929,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 801,
+      "sim_time": 40.05,
+      "speed_mps": 1.0361301898956299,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 821,
+      "sim_time": 41.05,
+      "speed_mps": 0.682478666305542,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 841,
+      "sim_time": 42.05,
+      "speed_mps": 0.4573388993740082,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 861,
+      "sim_time": 43.05,
+      "speed_mps": 0.47907012701034546,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 881,
+      "sim_time": 44.05,
+      "speed_mps": 0.5599818825721741,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 901,
+      "sim_time": 45.05,
+      "speed_mps": 1.918445110321045,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 921,
+      "sim_time": 46.05,
+      "speed_mps": 3.406405210494995,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 941,
+      "sim_time": 47.05,
+      "speed_mps": 4.511307716369629,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 961,
+      "sim_time": 48.05,
+      "speed_mps": 4.98341703414917,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 2.8000000000000003,
+      "object_id": null
+    },
+    {
+      "frame_id": 981,
+      "sim_time": 49.05,
+      "speed_mps": 4.779033184051514,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1001,
+      "sim_time": 50.05,
+      "speed_mps": 4.463045597076416,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 1021,
+      "sim_time": 51.05,
+      "speed_mps": 7.5200371742248535,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1041,
+      "sim_time": 52.05,
+      "speed_mps": 9.759354591369629,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1061,
+      "sim_time": 53.05,
+      "speed_mps": 9.259648323059082,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1081,
+      "sim_time": 54.05,
+      "speed_mps": 9.040921211242676,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1101,
+      "sim_time": 55.05,
+      "speed_mps": 9.802807807922363,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1121,
+      "sim_time": 56.05,
+      "speed_mps": 9.17427921295166,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1141,
+      "sim_time": 57.05,
+      "speed_mps": 8.559914588928223,
+      "brake": true,
+      "reason": "steering: obstacle static.dynamic",
+      "hazard_distance_m": 8.4,
+      "object_id": -57141
+    },
+    {
+      "frame_id": 1161,
+      "sim_time": 58.05,
+      "speed_mps": 8.130487442016602,
+      "brake": true,
+      "reason": "steering: obstacle static.dynamic",
+      "hazard_distance_m": 0.0,
+      "object_id": -57141
+    },
+    {
+      "frame_id": 1181,
+      "sim_time": 59.05,
+      "speed_mps": 7.814352035522461,
+      "brake": true,
+      "reason": "steering: obstacle static.vegetation",
+      "hazard_distance_m": 0.0,
+      "object_id": -53351
+    }
+  ]
+}

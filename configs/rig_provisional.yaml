@@ -1,0 +1,52 @@
+# PROVISORISCHE Kamera-Rig-Konfiguration -- KEIN Ergebnis von M1.
+#
+# Diese Werte (Positionen, Rotationen, FOV, Auflösung) sind geschätzt, um das
+# CARLA-Open-Loop-Recording in M4 mit einem plausiblen 4-Kamera-Rig zu
+# betreiben. Sie sind NICHT die echten Intrinsics/Extrinsics des
+# Alpamayo/PhysicalAI-AV-Rigs. Die echten Werte kommen aus M1 und werden aus
+# dem PhysicalAI-AV-Datensatz extrahiert. Diese Datei darf nicht als Quelle
+# für Kalibrierung, Trainingsdaten oder ein Modell-Deployment verwendet
+# werden -- ausschließlich für M4-Smoke-Tests und Viewer-Entwicklung.
+#
+# Kameranamen sind Schlüssel aus ALPAMAYO_CAMERA_INDICES in
+# src/acarla/types.py (front_wide, front_tele, cross_left, cross_right).
+# Positionen/Rotationen sind in CARLA-Konvention: x vorne, y rechts, z oben,
+# linkshändig; rotation.yaw in Grad, 0 = Blickrichtung des Fahrzeugs.
+# `transform.location` ist relativ zum Ego-Actor-Ursprung angegeben.
+
+cameras:
+  front_wide:
+    fov: 120
+    width: 1920
+    height: 1080
+    sensor_tick: 0.1
+    transform:
+      location: { x: 1.6, y: 0.0, z: 1.6 }
+      rotation: { roll: 0.0, pitch: 0.0, yaw: 0.0 }
+
+  front_tele:
+    fov: 30
+    width: 1920
+    height: 1080
+    sensor_tick: 0.1
+    transform:
+      location: { x: 1.6, y: 0.0, z: 1.65 }
+      rotation: { roll: 0.0, pitch: 0.0, yaw: 0.0 }
+
+  cross_left:
+    fov: 120
+    width: 1920
+    height: 1080
+    sensor_tick: 0.1
+    transform:
+      location: { x: 1.2, y: -0.6, z: 1.6 }
+      rotation: { roll: 0.0, pitch: 0.0, yaw: -55.0 }
+
+  cross_right:
+    fov: 120
+    width: 1920
+    height: 1080
+    sensor_tick: 0.1
+    transform:
+      location: { x: 1.2, y: 0.6, z: 1.6 }
+      rotation: { roll: 0.0, pitch: 0.0, yaw: 55.0 }

@@ -1,0 +1,1061 @@
+{
+  "kind": "off_policy_replay_audit",
+  "closed_loop_pass": false,
+  "limitation": "Interventions on recorded states do not prove the subsequent closed loop safe.",
+  "source_trace": "C:\\Festplatte (D)\\Dateien\\AI\\Atonomousdrivingstack\\alpamayo-carla\\results\\loop_town10_seed21_run6_speedbound\\trace.jsonl",
+  "map": "Carla/Maps/Town10HD_Opt",
+  "static_objects": 66120,
+  "checked_frames": 116,
+  "brake_frames": 73,
+  "reasons": {
+    "steering: obstacle vehicle.lincoln.mkz_2020": 19,
+    "plan: footprint leaves driving lanes": 2,
+    "steering: footprint leaves driving lanes": 52
+  },
+  "decisions": [
+    {
+      "frame_id": 41,
+      "sim_time": 2.05,
+      "speed_mps": 0.0,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 51,
+      "sim_time": 2.55,
+      "speed_mps": 0.00025406479835510254,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 61,
+      "sim_time": 3.05,
+      "speed_mps": 2.2873282432556152e-05,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 71,
+      "sim_time": 3.55,
+      "speed_mps": 0.0,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 81,
+      "sim_time": 4.05,
+      "speed_mps": 0.0,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 91,
+      "sim_time": 4.55,
+      "speed_mps": 0.0,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 101,
+      "sim_time": 5.05,
+      "speed_mps": 2.0820202827453613,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 111,
+      "sim_time": 5.55,
+      "speed_mps": 5.254974842071533,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 121,
+      "sim_time": 6.05,
+      "speed_mps": 7.59243106842041,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 131,
+      "sim_time": 6.55,
+      "speed_mps": 7.803328037261963,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 141,
+      "sim_time": 7.05,
+      "speed_mps": 7.595913410186768,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 151,
+      "sim_time": 7.55,
+      "speed_mps": 5.960299968719482,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 161,
+      "sim_time": 8.05,
+      "speed_mps": 5.032472133636475,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 171,
+      "sim_time": 8.55,
+      "speed_mps": 4.3099365234375,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 181,
+      "sim_time": 9.05,
+      "speed_mps": 3.9653313159942627,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 191,
+      "sim_time": 9.55,
+      "speed_mps": 4.386604309082031,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 201,
+      "sim_time": 10.05,
+      "speed_mps": 3.897434949874878,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 4.4,
+      "object_id": 143
+    },
+    {
+      "frame_id": 211,
+      "sim_time": 10.55,
+      "speed_mps": 1.8556756973266602,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 3.2,
+      "object_id": 143
+    },
+    {
+      "frame_id": 221,
+      "sim_time": 11.05,
+      "speed_mps": 0.07458093762397766,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 2.8000000000000003,
+      "object_id": 143
+    },
+    {
+      "frame_id": 231,
+      "sim_time": 11.55,
+      "speed_mps": 0.9759647846221924,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 2.4000000000000004,
+      "object_id": 143
+    },
+    {
+      "frame_id": 241,
+      "sim_time": 12.05,
+      "speed_mps": 0.7514084577560425,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 2.0,
+      "object_id": 143
+    },
+    {
+      "frame_id": 251,
+      "sim_time": 12.55,
+      "speed_mps": 0.6260945796966553,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 1.6,
+      "object_id": 143
+    },
+    {
+      "frame_id": 261,
+      "sim_time": 13.05,
+      "speed_mps": 0.4118483364582062,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 1.6,
+      "object_id": 143
+    },
+    {
+      "frame_id": 271,
+      "sim_time": 13.55,
+      "speed_mps": 0.23258018493652344,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 1.6,
+      "object_id": 143
+    },
+    {
+      "frame_id": 281,
+      "sim_time": 14.05,
+      "speed_mps": 0.12517115473747253,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 1.6,
+      "object_id": 143
+    },
+    {
+      "frame_id": 291,
+      "sim_time": 14.55,
+      "speed_mps": 0.01700844056904316,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 1.6,
+      "object_id": 143
+    },
+    {
+      "frame_id": 301,
+      "sim_time": 15.05,
+      "speed_mps": 0.01760254055261612,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 1.6,
+      "object_id": 143
+    },
+    {
+      "frame_id": 311,
+      "sim_time": 15.55,
+      "speed_mps": 0.01124129630625248,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 1.6,
+      "object_id": 143
+    },
+    {
+      "frame_id": 321,
+      "sim_time": 16.05,
+      "speed_mps": 0.0018377655651420355,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 1.6,
+      "object_id": 143
+    },
+    {
+      "frame_id": 331,
+      "sim_time": 16.55,
+      "speed_mps": 0.15136396884918213,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 1.6,
+      "object_id": 143
+    },
+    {
+      "frame_id": 341,
+      "sim_time": 17.05,
+      "speed_mps": 1.5628536939620972,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 2.4000000000000004,
+      "object_id": 143
+    },
+    {
+      "frame_id": 351,
+      "sim_time": 17.55,
+      "speed_mps": 4.119362831115723,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 4.4,
+      "object_id": 143
+    },
+    {
+      "frame_id": 361,
+      "sim_time": 18.05,
+      "speed_mps": 5.128427028656006,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 5.2,
+      "object_id": 143
+    },
+    {
+      "frame_id": 371,
+      "sim_time": 18.55,
+      "speed_mps": 7.454743385314941,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 3.2,
+      "object_id": 143
+    },
+    {
+      "frame_id": 381,
+      "sim_time": 19.05,
+      "speed_mps": 1.6163089275360107,
+      "brake": true,
+      "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+      "hazard_distance_m": 3.6,
+      "object_id": 143
+    },
+    {
+      "frame_id": 391,
+      "sim_time": 19.55,
+      "speed_mps": 0.24770888686180115,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 401,
+      "sim_time": 20.05,
+      "speed_mps": 0.6862702369689941,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 411,
+      "sim_time": 20.55,
+      "speed_mps": 2.2261977195739746,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 421,
+      "sim_time": 21.05,
+      "speed_mps": 5.386143207550049,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 431,
+      "sim_time": 21.55,
+      "speed_mps": 8.464295387268066,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 441,
+      "sim_time": 22.05,
+      "speed_mps": 9.511602401733398,
+      "brake": true,
+      "reason": "plan: footprint leaves driving lanes",
+      "hazard_distance_m": 10.4,
+      "object_id": null
+    },
+    {
+      "frame_id": 451,
+      "sim_time": 22.55,
+      "speed_mps": 9.7761869430542,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 4.800000000000001,
+      "object_id": null
+    },
+    {
+      "frame_id": 461,
+      "sim_time": 23.05,
+      "speed_mps": 9.809212684631348,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 471,
+      "sim_time": 23.55,
+      "speed_mps": 9.816211700439453,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 481,
+      "sim_time": 24.05,
+      "speed_mps": 9.817299842834473,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 491,
+      "sim_time": 24.55,
+      "speed_mps": 9.817599296569824,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 501,
+      "sim_time": 25.05,
+      "speed_mps": 9.817595481872559,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 511,
+      "sim_time": 25.55,
+      "speed_mps": 9.817593574523926,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 521,
+      "sim_time": 26.05,
+      "speed_mps": 9.519925117492676,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 531,
+      "sim_time": 26.55,
+      "speed_mps": 9.013516426086426,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 541,
+      "sim_time": 27.05,
+      "speed_mps": 9.491931915283203,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 551,
+      "sim_time": 27.55,
+      "speed_mps": 9.812238693237305,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 561,
+      "sim_time": 28.05,
+      "speed_mps": 9.810490608215332,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 571,
+      "sim_time": 28.55,
+      "speed_mps": 8.704384803771973,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 581,
+      "sim_time": 29.05,
+      "speed_mps": 8.21999454498291,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 591,
+      "sim_time": 29.55,
+      "speed_mps": 8.925942420959473,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 601,
+      "sim_time": 30.05,
+      "speed_mps": 9.51003360748291,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 611,
+      "sim_time": 30.55,
+      "speed_mps": 9.815794944763184,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 621,
+      "sim_time": 31.05,
+      "speed_mps": 9.808406829833984,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 631,
+      "sim_time": 31.55,
+      "speed_mps": 9.812373161315918,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 641,
+      "sim_time": 32.05,
+      "speed_mps": 9.811979293823242,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 651,
+      "sim_time": 32.55,
+      "speed_mps": 9.81207275390625,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 661,
+      "sim_time": 33.05,
+      "speed_mps": 9.797727584838867,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 671,
+      "sim_time": 33.55,
+      "speed_mps": 9.81738567352295,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 681,
+      "sim_time": 34.05,
+      "speed_mps": 9.802077293395996,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 691,
+      "sim_time": 34.55,
+      "speed_mps": 9.80006217956543,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 701,
+      "sim_time": 35.05,
+      "speed_mps": 9.810229301452637,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 711,
+      "sim_time": 35.55,
+      "speed_mps": 9.814070701599121,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 721,
+      "sim_time": 36.05,
+      "speed_mps": 9.814480781555176,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 731,
+      "sim_time": 36.55,
+      "speed_mps": 9.530747413635254,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 741,
+      "sim_time": 37.05,
+      "speed_mps": 9.501700401306152,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 751,
+      "sim_time": 37.55,
+      "speed_mps": 7.348224639892578,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 761,
+      "sim_time": 38.05,
+      "speed_mps": 4.060204029083252,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 771,
+      "sim_time": 38.55,
+      "speed_mps": 2.626659870147705,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 781,
+      "sim_time": 39.05,
+      "speed_mps": 1.9434541463851929,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 791,
+      "sim_time": 39.55,
+      "speed_mps": 1.221267819404602,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 801,
+      "sim_time": 40.05,
+      "speed_mps": 1.0361301898956299,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 811,
+      "sim_time": 40.55,
+      "speed_mps": 0.8338576555252075,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 821,
+      "sim_time": 41.05,
+      "speed_mps": 0.682478666305542,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 831,
+      "sim_time": 41.55,
+      "speed_mps": 0.5384817123413086,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 841,
+      "sim_time": 42.05,
+      "speed_mps": 0.4573388993740082,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 851,
+      "sim_time": 42.55,
+      "speed_mps": 0.45083197951316833,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 861,
+      "sim_time": 43.05,
+      "speed_mps": 0.47907012701034546,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 871,
+      "sim_time": 43.55,
+      "speed_mps": 0.5209002494812012,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 881,
+      "sim_time": 44.05,
+      "speed_mps": 0.5599818825721741,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 891,
+      "sim_time": 44.55,
+      "speed_mps": 1.2485110759735107,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 901,
+      "sim_time": 45.05,
+      "speed_mps": 1.918445110321045,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 911,
+      "sim_time": 45.55,
+      "speed_mps": 2.825079917907715,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 921,
+      "sim_time": 46.05,
+      "speed_mps": 3.406405210494995,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 931,
+      "sim_time": 46.55,
+      "speed_mps": 4.153131484985352,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 941,
+      "sim_time": 47.05,
+      "speed_mps": 4.511307716369629,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 951,
+      "sim_time": 47.55,
+      "speed_mps": 4.852485179901123,
+      "brake": true,
+      "reason": "plan: footprint leaves driving lanes",
+      "hazard_distance_m": 2.4000000000000004,
+      "object_id": null
+    },
+    {
+      "frame_id": 961,
+      "sim_time": 48.05,
+      "speed_mps": 4.98341703414917,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 2.8000000000000003,
+      "object_id": null
+    },
+    {
+      "frame_id": 971,
+      "sim_time": 48.55,
+      "speed_mps": 4.795275688171387,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 981,
+      "sim_time": 49.05,
+      "speed_mps": 4.779033184051514,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 991,
+      "sim_time": 49.55,
+      "speed_mps": 4.4898505210876465,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1001,
+      "sim_time": 50.05,
+      "speed_mps": 4.463045597076416,
+      "brake": true,
+      "reason": "steering: footprint leaves driving lanes",
+      "hazard_distance_m": 0.0,
+      "object_id": null
+    },
+    {
+      "frame_id": 1011,
+      "sim_time": 50.55,
+      "speed_mps": 5.567680358886719,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1021,
+      "sim_time": 51.05,
+      "speed_mps": 7.5200371742248535,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1031,
+      "sim_time": 51.55,
+      "speed_mps": 9.125510215759277,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1041,
+      "sim_time": 52.05,
+      "speed_mps": 9.759354591369629,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1051,
+      "sim_time": 52.55,
+      "speed_mps": 9.295144081115723,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1061,
+      "sim_time": 53.05,
+      "speed_mps": 9.259648323059082,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1071,
+      "sim_time": 53.55,
+      "speed_mps": 9.012430191040039,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1081,
+      "sim_time": 54.05,
+      "speed_mps": 9.040921211242676,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1091,
+      "sim_time": 54.55,
+      "speed_mps": 9.824087142944336,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1101,
+      "sim_time": 55.05,
+      "speed_mps": 9.802807807922363,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1111,
+      "sim_time": 55.55,
+      "speed_mps": 9.296412467956543,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1121,
+      "sim_time": 56.05,
+      "speed_mps": 9.17427921295166,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1131,
+      "sim_time": 56.55,
+      "speed_mps": 8.58297061920166,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1141,
+      "sim_time": 57.05,
+      "speed_mps": 8.559914588928223,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1151,
+      "sim_time": 57.55,
+      "speed_mps": 8.127385139465332,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1161,
+      "sim_time": 58.05,
+      "speed_mps": 8.130487442016602,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1171,
+      "sim_time": 58.55,
+      "speed_mps": 7.86187744140625,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1181,
+      "sim_time": 59.05,
+      "speed_mps": 7.814352035522461,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    },
+    {
+      "frame_id": 1191,
+      "sim_time": 59.55,
+      "speed_mps": 7.445261478424072,
+      "brake": false,
+      "reason": "clear",
+      "hazard_distance_m": null,
+      "object_id": null
+    }
+  ]
+}

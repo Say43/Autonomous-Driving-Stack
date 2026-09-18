@@ -1,0 +1,56 @@
+# Modellkonfiguration: Alpamayo-1.5-10B auf 2x Tesla T4 (Kaggle), NF4-Backbone
+#
+# STATUS: experimental_unverified. Dies ist KEINE BF16-Golden-Reference (die braucht eine
+# sm80+-GPU mit >=24 GB, die in diesem Projekt nicht existiert). Es ist die erste endliche,
+# reproduzierbare Trajektorie des Projekts und dient als Referenz fuer alles Weitere, solange
+# keine bessere existiert. Alle Zahlen sind gemessen, Quelle: golden/m0_t4x2_nf4_experimental.json
+# (SHA-256 F060BA7223A85971E828108B03A5C55E4D8D93FB3133B22C4BD4810446ED716D).
+
+model_id: nvidia/Alpamayo-1.5-10B
+upstream_revision: 24179cfa8b2eeaf775e9e21698b23af0f899522d
+backbone_repo: nvidia/Cosmos-Reason2-8B            # gated, Freigabe getrennt vom Datensatz noetig
+strategy: experimental_nf4_backbone_fp16_expert_kvlocal_split_v23
+
+quantization:
+  scheme: nf4_double_quant
+  compute_dtype: float16
+  quantized_modules: 72                             # 36 LM-Layer x (mlp, self_attn)
+  kept_fp16: [vlm.model.visual, vlm.model.language_model.embed_tokens, vlm.lm_head, expert, diffusion, action_space, action_in_proj, action_out_proj]
+  expert_dtype_verified: float16                    # Fallstrick 7: der Expert gibt die Zahlen aus
+
+device_map:                                         # entlang der Datenabhaengigkeit, NICHT layerweise
+  gpu0: [vlm.model.visual, vlm.model.language_model.embed_tokens]
+  gpu1: [vlm.model.language_model.layers, norm, rotary_emb, vlm.lm_head, expert, diffusion, action_*]
+  input_device: cuda:1                              # Rollout arbeitet auf input_ids.device (alpamayo1_5.py:286)
+  cpu_offload: false                                # Upstream-Rollout laeuft damit nicht (v19)
+
+attention: sdpa                                     # FlashAttention-2 braucht sm80+
+autocast_dtype: float16
+
+sampling:
+  seed: 42
+  top_p: 0.98
+  temperature: 0.6
+  num_traj_samples: 1
+  max_generation_length: 256
+
+measured:
+  gpu: 2x Tesla T4 (14.56 GiB, sm_75), torch 2.8.0, transformers 4.57.1
+  model_load_seconds: 145
+  inference_seconds: [12.0, 9.7]
+  peak_alloc_gib: {gpu0: 2.87, gpu1: 12.21}
+  finite: true
+  max_repeat_delta_meters: 0.0
+  # min_ade_meters_vs_ground_truth: measured on a PhysicalAI-AV clip; kept out of the
+  # public repository (dataset licence section 3, benchmarking results are confidential)
+  reference_clip: 030c760c-ae38-49aa-9ad8-f5650a545d26
+  t0_us: 5100000
+  cameras: [0, 1, 2, 6]
+  reasoning: "Nudge to the left to clear the construction equipment blocking the right side of our lane"
+
+not_working:                                        # empirisch, siehe results/m0_kaggle_v18..v22
+  - fp16_device_map_auto_2gpu: OOM im Reasoning-Rollout (v18)
+  - fp16_asymmetric_caps: CPU-Offload + Cross-Device-cat (v19)
+  - nf4_single_gpu: OOM, ~12 GB FP16-Reste + NF4 (v20)
+  - nf4_device_map_auto: Expert liest KV-Cache aller Layer ueber Geraetegrenze (v21)
+  - nf4_kvlocal_lm_head_on_gpu0: Euler-Update ueber Geraetegrenze (v22)

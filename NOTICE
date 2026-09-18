@@ -1,0 +1,22 @@
+alpamayo-carla
+Copyright (c) 2026 Say43
+
+This project uses the following third-party components. None of them is vendored
+in this repository; they are obtained at run time under their own licences.
+
+- Alpamayo-1.5 (https://github.com/NVlabs/alpamayo1.5), Apache License 2.0,
+  Copyright NVIDIA Corporation. Cloned at a pinned commit by the Kaggle notebooks.
+  src/acarla/adapter/lens.py contains an independent numpy re-implementation of the
+  F-Theta camera model's forward/backward polynomial mapping (about twenty lines),
+  written to match the behaviour of the original and checked against it in
+  tests/oracle/test_lens_physical_ai_oracle.py.
+- Alpamayo-1.5-10B model weights (https://huggingface.co/nvidia/Alpamayo-1.5-10B),
+  OpenMDW-1.1, NVIDIA Corporation.
+- Cosmos-Reason2-8B (https://huggingface.co/nvidia/Cosmos-Reason2-8B), NVIDIA Open
+  Model License, NVIDIA Corporation (gated; not redistributed).
+- PhysicalAI-Autonomous-Vehicles dataset
+  (https://huggingface.co/datasets/nvidia/PhysicalAI-Autonomous-Vehicles), NVIDIA
+  Autonomous Vehicle Dataset License. No part of the dataset, no calibration values
+  derived from it and no benchmarking results on it are contained in this repository.
+- CARLA 0.9.16 (https://carla.org), MIT License (simulator) and CC-BY (assets);
+  images and ground truth in results/ and docs/img/ are CARLA renders.

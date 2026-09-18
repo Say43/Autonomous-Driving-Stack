@@ -1,0 +1,20 @@
+{
+  "date": "2026-09-18",
+  "source_commit": "2cdb0f58ed7e8f87acf40b0a66bc06403c092733",
+  "source_verification": "Git HEAD and diff checked externally; executable code unchanged; documentation only differed during final smoke.",
+  "alpamayo_used": false,
+  "raw_git_sha": "unknown",
+  "raw_git_sha_reason": "Git dubious ownership in isolated Windows checkout under simulator process user",
+  "artifacts_sha256": {
+    "quality_smoke_final/summary.json": "f1f10fdc61394c5f8ae1654289a5773aebd192d2ec10b993f7a0591724b067fd",
+    "quality_smoke_final/trace.jsonl": "13f606a0fac637a5b6a9cded192bf1ecfe713bb4a7ae78fa34e36aa3023cb629"
+  },
+  "checks": {
+    "python_passed": 178,
+    "python_skipped": 2,
+    "viewer_passed": 7,
+    "carla_coordinate_oracle_passed": 4,
+    "controlled_safety_scenarios_passed": 2,
+    "real_model_validation": "pending: remote worker exited"
+  }
+}

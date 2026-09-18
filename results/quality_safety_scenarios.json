@@ -1,0 +1,35 @@
+{
+  "kind": "synthetic_safety_regression",
+  "alpamayo_used": false,
+  "results": [
+    {
+      "scenario": "stationary_car",
+      "alpamayo_used": false,
+      "ticks": 300,
+      "collisions": 0,
+      "offroad_ticks": 0,
+      "intervention_ticks": 0,
+      "first_intervention": null,
+      "distance_m": 79.89360805600882,
+      "final_speed_mps": 5.8353558979818425,
+      "passed": false
+    },
+    {
+      "scenario": "sidewalk_plan",
+      "alpamayo_used": false,
+      "ticks": 300,
+      "collisions": 0,
+      "offroad_ticks": 0,
+      "intervention_ticks": 266,
+      "first_intervention": {
+        "tick": 28,
+        "speed_mps": 5.1324779749406755,
+        "reason": "plan: footprint leaves driving lanes",
+        "distance_m": 7.2
+      },
+      "distance_m": 7.219863985788834,
+      "final_speed_mps": 3.741726876126613e-07,
+      "passed": true
+    }
+  ]
+}

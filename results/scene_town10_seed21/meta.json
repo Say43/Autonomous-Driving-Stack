@@ -1,0 +1,28 @@
+{
+  "camera_names": [
+    "cross_left",
+    "front_wide",
+    "cross_right",
+    "front_tele"
+  ],
+  "n_packets": 20,
+  "rig_path": "configs\\rig_alpamayo.yaml",
+  "run_header": {
+    "cameras": [
+      "cross_left",
+      "front_wide",
+      "cross_right",
+      "front_tele"
+    ],
+    "carla_version": "0.9.16",
+    "fixed_delta_seconds": 0.05,
+    "git_sha": "de07a7c3581066ad781abe70b935434c9c948a8c",
+    "map_name": "Carla/Maps/Town10HD_Opt",
+    "model_config_hash": "none",
+    "model_config_name": "none-m4-open-loop",
+    "run_timestamp": "2026-09-16T09:19:09.987419+00:00",
+    "seed_traffic_manager": 21,
+    "seed_world": 21
+  },
+  "total_bytes": 1990671712
+}

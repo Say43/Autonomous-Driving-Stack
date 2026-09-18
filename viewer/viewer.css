@@ -1,0 +1,541 @@
+:root {
+  color-scheme: light;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: #22252a;
+  background: #fafafa;
+  --blue: #2387ee;
+  --muted: #858990;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  overflow: hidden;
+}
+button,
+input,
+select {
+  font: inherit;
+}
+button,
+.button {
+  cursor: pointer;
+}
+button:focus-visible,
+.button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid #2387ee;
+  outline-offset: 4px;
+}
+button {
+  border: 0;
+  background: none;
+  color: inherit;
+}
+#drive {
+  height: 100dvh;
+  min-height: 400px;
+  position: relative;
+  overflow: hidden;
+}
+#scene {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  cursor: grab;
+}
+#scene:active {
+  cursor: grabbing;
+}
+.topbar {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 86px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 36px;
+  gap: 16px;
+  background: linear-gradient(#fafafa 45%, #fafafa00);
+}
+.brand {
+  text-decoration: none;
+  color: #292d33;
+  font-size: 32px;
+  font-weight: 300;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.brand span {
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 3px;
+}
+.badge {
+  font-size: 10px;
+  letter-spacing: 1.4px;
+  color: #657078;
+  border: 1px solid #dde1e5;
+  background: #ffffffc9;
+  border-radius: 20px;
+  padding: 8px 13px;
+}
+.topActions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.button {
+  padding: 11px 17px;
+  border: 1px solid #dedfe2;
+  border-radius: 7px;
+  background: #fff;
+  font-size: 12px;
+  font-weight: 600;
+}
+.button span {
+  margin-left: 13px;
+  color: #777;
+}
+.quiet {
+  font-size: 12px;
+  color: #717780;
+}
+.iconButton {
+  font-size: 17px;
+  padding: 8px;
+  border-radius: 6px;
+}
+.iconButton:hover,
+.quiet:hover {
+  background: #e9ecf0;
+}
+.button:hover {
+  border-color: #aaa;
+}
+.instrument {
+  position: absolute;
+  left: 58px;
+  top: 118px;
+  pointer-events: none;
+}
+.gear {
+  display: flex;
+  gap: 15px;
+  font-size: 12px;
+  color: #adb1b6;
+}
+.gear strong {
+  color: #222;
+}
+.instrument #speedValue {
+  font-size: 100px;
+  line-height: 1.15;
+  font-weight: 300;
+  letter-spacing: -6px;
+  font-variant-numeric: tabular-nums;
+  margin-top: 12px;
+}
+.speedUnit {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #72777e;
+  margin-left: 8px;
+}
+.driveState {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 11px;
+  color: #6a747f;
+  margin-top: 25px;
+}
+.steeringIcon {
+  color: var(--blue);
+  font-size: 25px;
+}
+.intervention {
+  max-width: 225px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: #a6581e;
+  background: #fff1df;
+  padding: 10px 13px;
+  border-radius: 8px;
+  margin-top: 14px;
+}
+.intervention.danger {
+  color: #b33f3f;
+  background: #fce9e9;
+}
+.viewTools {
+  position: absolute;
+  left: 40px;
+  bottom: 128px;
+  display: flex;
+  gap: 3px;
+  background: #ffffffe8;
+  padding: 4px;
+  border: 1px solid #e8eaed;
+  border-radius: 9px;
+}
+.viewTools button {
+  font-size: 11px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  color: #858990;
+}
+.viewTools .selected {
+  background: #eef2f6;
+  color: #303944;
+}
+.viewTools button:hover {
+  color: #2387ee;
+}
+#details {
+  position: absolute;
+  right: 30px;
+  top: 110px;
+  bottom: 126px;
+  width: 284px;
+  padding: 23px 22px;
+  background: #ffffffdf;
+  border: 1px solid #eeeff1;
+  border-radius: 15px;
+  overflow-y: auto;
+  box-shadow: 0 12px 42px #27344106;
+  backdrop-filter: blur(16px);
+  scrollbar-width: thin;
+}
+.detailHeading {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+.eyebrow {
+  font-size: 9px;
+  font-weight: 650;
+  letter-spacing: 1.4px;
+  color: #8b9199;
+}
+#mapName {
+  font-size: 9px;
+  color: #89929d;
+  max-width: 115px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+h1 {
+  font-size: 23px;
+  font-weight: 500;
+  letter-spacing: -0.6px;
+  margin: 12px 0 20px;
+}
+.sources {
+  display: flex;
+  gap: 10px;
+  font-size: 9px;
+  color: #6b747d;
+}
+.sources span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.gray {
+  background: #a2aab2;
+}
+.blue {
+  background: var(--blue);
+}
+.objectCounts {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0 17px;
+}
+.objectCounts div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.objectCounts strong {
+  font-size: 23px;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+.objectCounts span {
+  font-size: 10px;
+  color: #8b9199;
+}
+.note {
+  font-size: 10px;
+  line-height: 1.6;
+  color: #9298a0;
+  background: #f5f7f9;
+  border-radius: 6px;
+  padding: 9px 11px;
+}
+.reasoning {
+  border-top: 1px solid #eef0f2;
+  margin-top: 20px;
+  padding-top: 20px;
+}
+.reasoning p {
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 10px 0;
+  color: #505963;
+}
+.muted {
+  font-size: 9px;
+  line-height: 1.5;
+  color: #9a9fa5;
+}
+.telemetry {
+  margin: 23px 0 18px;
+}
+.meter {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 12px;
+  font-size: 10px;
+  color: #808991;
+}
+.meter > span {
+  width: 78px;
+}
+.meter > div {
+  position: relative;
+  flex: 1;
+  height: 3px;
+  background: #e8ecf0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.meter i {
+  position: absolute;
+  height: 100%;
+  background: #6da7d7;
+  left: 0;
+  width: 0;
+}
+.meter output {
+  width: 30px;
+  text-align: right;
+  font-size: 9px;
+}
+.meter.brake i {
+  background: #d69e94;
+}
+.metadata {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  font-size: 9px;
+  color: #9ba2aa;
+}
+.sceneLegend {
+  position: absolute;
+  bottom: 98px;
+  left: 40px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10px;
+  color: #939aa2;
+  pointer-events: none;
+}
+.playback {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+  right: 30px;
+  height: 59px;
+  border: 1px solid #e6e9ec;
+  border-radius: 12px;
+  background: #fffffff2;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 0 18px;
+  box-shadow: 0 4px 20px #2b3e5010;
+}
+.playButton {
+  width: 33px;
+  height: 33px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #252b33;
+  color: #fff;
+  font-size: 12px;
+  display: grid;
+  place-items: center;
+}
+.playback > span {
+  font-size: 11px;
+  color: #7b838d;
+  font-variant-numeric: tabular-nums;
+}
+#scrubber {
+  flex: 1;
+  min-width: 40px;
+  accent-color: #348ee3;
+  height: 3px;
+}
+#playbackRate {
+  border: 0;
+  background: #f2f5f8;
+  border-radius: 5px;
+  padding: 6px;
+  font-size: 11px;
+  color: #66717c;
+}
+#loadStatus {
+  position: absolute;
+  top: 85px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  color: #768493;
+  max-width: 65%;
+  text-align: center;
+  pointer-events: none;
+}
+#loadStatus.error {
+  color: #b54444;
+}
+.dragover {
+  outline: 2px solid var(--blue);
+}
+[hidden] {
+  display: none !important;
+}
+@media (min-width: 1500px) {
+  #details {
+    right: 48px;
+    width: 310px;
+  }
+  .instrument {
+    left: 74px;
+  }
+}
+@media (max-width: 1000px) {
+  #details {
+    width: 245px;
+    right: 18px;
+    padding: 18px;
+  }
+  .instrument {
+    left: 32px;
+  }
+  .brand span {
+    display: none;
+  }
+  .topbar {
+    padding: 0 24px;
+  }
+  .instrument #speedValue {
+    font-size: 80px;
+  }
+  .sceneLegend #sceneHint {
+    display: none;
+  }
+}
+@media (max-width: 700px) {
+  .topbar {
+    height: 70px;
+    padding: 0 18px;
+    gap: 7px;
+  }
+  .brand {
+    font-size: 26px;
+  }
+  .badge {
+    font-size: 8px;
+    letter-spacing: 0.5px;
+    padding: 6px 9px;
+  }
+  .topActions {
+    gap: 4px;
+  }
+  .quiet {
+    display: none;
+  }
+  .button {
+    padding: 9px;
+    font-size: 10px;
+  }
+  .button span {
+    display: none;
+  }
+  .instrument {
+    left: 22px;
+    top: 92px;
+  }
+  .instrument #speedValue {
+    font-size: 65px;
+    letter-spacing: -3px;
+  }
+  .gear {
+    font-size: 10px;
+    gap: 11px;
+  }
+  .driveState {
+    margin-top: 12px;
+    font-size: 9px;
+    max-width: 135px;
+  }
+  #details {
+    top: 83px;
+    bottom: 111px;
+    right: 12px;
+    width: 220px;
+    box-shadow: 0 10px 80px #35445030;
+  }
+  .viewTools {
+    left: 20px;
+    bottom: 118px;
+  }
+  .sceneLegend {
+    left: 21px;
+    bottom: 91px;
+    font-size: 8px;
+  }
+  .playback {
+    left: 12px;
+    right: 12px;
+    bottom: 14px;
+    gap: 9px;
+    padding: 0 10px;
+    height: 56px;
+  }
+  .playback .iconButton {
+    padding: 4px;
+    font-size: 13px;
+  }
+  .playback > span {
+    font-size: 9px;
+  }
+  #loadStatus {
+    top: 70px;
+    font-size: 9px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto;
+  }
+}

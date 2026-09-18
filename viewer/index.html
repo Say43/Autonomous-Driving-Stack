@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Alpamayo · Drive</title>
+    <link rel="stylesheet" href="viewer.css" />
+  </head>
+  <body>
+    <main id="drive">
+      <canvas
+        id="scene"
+        aria-label="Dreidimensionale Fahrvisualisierung aus der Heckperspektive"
+      ></canvas>
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Alpamayo Drive"
+          >A<span>ALPAMAYO</span></a
+        >
+        <div id="modeBadge" class="badge">DEMO · SYNTHETISCH</div>
+        <div class="topActions">
+          <button id="demoBtn" class="quiet">Demo</button
+          ><label class="button" id="dropZone" for="fileInput"
+            >Trace öffnen <span>↗</span></label
+          ><input
+            id="fileInput"
+            type="file"
+            accept=".jsonl,.json,.txt"
+            hidden
+          /><button
+            id="detailsBtn"
+            class="iconButton"
+            aria-expanded="true"
+            aria-controls="details"
+            title="Details ein-/ausblenden"
+          >
+            ☰
+          </button>
+        </div>
+      </header>
+      <section class="instrument" aria-label="Fahrdaten">
+        <div class="gear">
+          <span>P</span><span>R</span><span>N</span><strong>D</strong>
+        </div>
+        <div id="speedValue">0</div>
+        <div class="speedUnit">KM/H</div>
+        <div class="driveState">
+          <span class="steeringIcon">◉</span
+          ><span id="driveState">Trace bereit</span>
+        </div>
+        <div id="intervention" class="intervention" hidden></div>
+      </section>
+      <div class="viewTools" aria-label="Ansicht">
+        <button id="rearBtn" class="selected">3D Heck</button
+        ><button id="topBtn">Von oben</button
+        ><button id="resetViewBtn" title="Kamera zurücksetzen">↺</button>
+      </div>
+      <aside id="details">
+        <div class="detailHeading">
+          <span class="eyebrow">FAHRVISUALISIERUNG</span
+          ><span id="mapName">DEMO</span>
+        </div>
+        <h1>Die Straße voraus.</h1>
+        <div class="sources">
+          <span><i class="dot gray"></i>CARLA-Umgebung</span
+          ><span><i class="dot blue"></i>Modellpfad</span>
+        </div>
+        <div class="objectCounts">
+          <div><strong id="vehiclesCount">0</strong><span>Fahrzeuge</span></div>
+          <div><strong id="peopleCount">0</strong><span>Personen</span></div>
+          <div><strong id="objectsCount">0</strong><span>Weitere</span></div>
+        </div>
+        <div id="coverage" class="note"></div>
+        <section class="reasoning">
+          <span class="eyebrow">MODELL · BEGRÜNDUNG</span>
+          <p id="reasoningText">Trace laden, um Modellpläne zu sehen.</p>
+          <div id="reasoningSource" class="muted"></div>
+        </section>
+        <section class="telemetry">
+          <span class="eyebrow">FAHRZEUGSTEUERUNG</span>
+          <div class="meter">
+            <span>Lenkung</span>
+            <div><i id="steerBar"></i></div>
+            <output id="steerValue">0</output>
+          </div>
+          <div class="meter">
+            <span>Beschleunigen</span>
+            <div><i id="throttleBar"></i></div>
+            <output id="throttleValue">0</output>
+          </div>
+          <div class="meter brake">
+            <span>Bremsen</span>
+            <div><i id="brakeBar"></i></div>
+            <output id="brakeValue">0</output>
+          </div>
+        </section>
+        <div id="runResult" class="note">Replay · keine Echtzeitsteuerung</div>
+        <div class="metadata">
+          <span id="frameLabel">Frame 0</span><span id="timeLabel">0.00 s</span>
+        </div>
+      </aside>
+      <div class="sceneLegend">
+        <i class="dot blue"></i>Pfad: Modell <span>·</span> Objekte: Simulator
+        <span>·</span
+        ><span id="sceneHint">Ziehen zum Drehen · Scrollen zum Zoomen</span>
+      </div>
+      <footer class="playback">
+        <button
+          id="stepBackBtn"
+          class="iconButton"
+          title="Vorheriger Frame"
+          aria-label="Vorheriger Frame"
+        >
+          ⏮</button
+        ><button
+          id="playPauseBtn"
+          class="playButton"
+          title="Abspielen/Pause (Leertaste)"
+          aria-label="Abspielen"
+        >
+          ▶</button
+        ><button
+          id="stepFwdBtn"
+          class="iconButton"
+          title="Nächster Frame"
+          aria-label="Nächster Frame"
+        >
+          ⏭</button
+        ><span id="elapsed">0:00</span
+        ><input
+          type="range"
+          id="scrubber"
+          min="0"
+          max="0"
+          value="0"
+          aria-label="Zeitpunkt im Trace"
+        /><span id="duration">0:00</span
+        ><select id="playbackRate" aria-label="Abspielgeschwindigkeit">
+          <option value="0.25">¼×</option>
+          <option value="0.5">½×</option>
+          <option value="1" selected>1×</option>
+          <option value="2">2×</option>
+          <option value="4">4×</option>
+        </select>
+      </footer>
+      <div id="loadStatus" role="status" aria-live="polite"></div>
+    </main>
+    <script src="trace-data.js"></script>
+    <script src="scene.js"></script>
+    <script src="viewer.js"></script>
+  </body>
+</html>

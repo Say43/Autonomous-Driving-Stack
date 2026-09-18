@@ -1,0 +1,42 @@
+{
+  "kind": "synthetic_safety_regression",
+  "alpamayo_used": false,
+  "results": [
+    {
+      "scenario": "stationary_car",
+      "alpamayo_used": false,
+      "ticks": 300,
+      "collisions": 0,
+      "offroad_ticks": 0,
+      "footprint_offroad_ticks": 0,
+      "intervention_ticks": 248,
+      "first_intervention": {
+        "tick": 47,
+        "speed_mps": 5.4236217687171635,
+        "reason": "steering: obstacle vehicle.lincoln.mkz_2020",
+        "distance_m": 6.800000000000001
+      },
+      "distance_m": 11.321267650679147,
+      "final_speed_mps": 1.0495890802058812e-07,
+      "passed": true
+    },
+    {
+      "scenario": "sidewalk_plan",
+      "alpamayo_used": false,
+      "ticks": 300,
+      "collisions": 0,
+      "offroad_ticks": 0,
+      "footprint_offroad_ticks": 0,
+      "intervention_ticks": 263,
+      "first_intervention": {
+        "tick": 32,
+        "speed_mps": 5.138693241743166,
+        "reason": "plan: footprint leaves driving lanes",
+        "distance_m": 7.2
+      },
+      "distance_m": 7.6710121423839155,
+      "final_speed_mps": 0.0,
+      "passed": true
+    }
+  ]
+}

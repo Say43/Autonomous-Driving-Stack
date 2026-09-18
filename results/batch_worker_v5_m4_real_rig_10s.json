@@ -1,0 +1,217 @@
+{
+  "status": "ok",
+  "model_id": "nvidia/Alpamayo-1.5-10B",
+  "upstream_git_revision": "24179cfa8b2eeaf775e9e21698b23af0f899522d",
+  "expected_upstream_revision": "24179cfa8b2eeaf775e9e21698b23af0f899522d",
+  "attention_backend": "sdpa",
+  "seed": 42,
+  "repeats": 2,
+  "num_traj_samples": 1,
+  "environment": {
+    "python": "3.12.13",
+    "torch": "2.8.0",
+    "transformers": "4.57.1",
+    "accelerate": "1.12.0",
+    "hf_token_present": true,
+    "hf_token_source": "kaggle:huggingface",
+    "cuda": "12.8",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "Tesla T4",
+        "memory_gib": 14.56219482421875,
+        "compute_capability": [
+          7,
+          5
+        ]
+      },
+      {
+        "index": 1,
+        "name": "Tesla T4",
+        "memory_gib": 14.56219482421875,
+        "compute_capability": [
+          7,
+          5
+        ]
+      }
+    ],
+    "driver": [
+      "580.159.04",
+      "580.159.04"
+    ]
+  },
+  "quantization": {
+    "scheme": "nf4_double_quant",
+    "compute_dtype": "float16",
+    "skip_modules": [
+      "visual",
+      "lm_head",
+      "expert",
+      "diffusion",
+      "action_space",
+      "action_in_proj",
+      "action_out_proj"
+    ]
+  },
+  "strategy": "experimental_nf4_backbone_fp16_expert_kvlocal_split_v23",
+  "model_dtype": "torch.float16",
+  "strategy_classification": "experimental_unverified",
+  "max_memory": null,
+  "kaggle_input_listing": [
+    {
+      "path": "/kaggle/input/datasets/says43/acarla-model-inputs/model_inputs.npz",
+      "bytes": 354753418
+    },
+    {
+      "path": "/kaggle/input/datasets/says43/acarla-model-inputs/rig_used.json",
+      "bytes": 1944
+    },
+    {
+      "path": "/kaggle/input/datasets/says43/acarla-model-inputs/meta.json",
+      "bytes": 690
+    }
+  ],
+  "input": {
+    "source": "acarla_model_inputs",
+    "npz": "/kaggle/input/datasets/says43/acarla-model-inputs/model_inputs.npz",
+    "packets": 8,
+    "image_frames_shape": [
+      8,
+      4,
+      4,
+      3,
+      1080,
+      1920
+    ],
+    "image_frames_dtype": "uint8",
+    "camera_indices": [
+      0,
+      1,
+      2,
+      6
+    ],
+    "ego_history_xyz_shape": [
+      8,
+      1,
+      1,
+      16,
+      3
+    ],
+    "ego_history_rot_shape": [
+      8,
+      1,
+      1,
+      16,
+      3,
+      3
+    ],
+    "frame_ids": [
+      39,
+      55,
+      71,
+      87,
+      103,
+      119,
+      135,
+      151
+    ],
+    "sim_times": [
+      1.95,
+      2.75,
+      3.55,
+      4.35,
+      5.15,
+      5.95,
+      6.75,
+      7.55
+    ],
+    "run_meta": {
+      "camera_names": [
+        "cross_left",
+        "front_wide",
+        "cross_right",
+        "front_tele"
+      ],
+      "n_packets": 8,
+      "rig_path": "configs\\rig_alpamayo.yaml",
+      "run_header": {
+        "cameras": [
+          "cross_left",
+          "front_wide",
+          "cross_right",
+          "front_tele"
+        ],
+        "carla_version": "0.9.16",
+        "fixed_delta_seconds": 0.05,
+        "git_sha": "109d6cb7fb702dfb190ebf1b1fadda13abb66d6d",
+        "map_name": "Carla/Maps/Town01",
+        "model_config_hash": "none",
+        "model_config_name": "none-m4-open-loop",
+        "run_timestamp": "2026-09-16T08:22:10.579088+00:00",
+        "seed_traffic_manager": 7,
+        "seed_world": 7
+      },
+      "total_bytes": 796268704
+    }
+  },
+  "model_load_seconds": 152.87739854800003,
+  "hf_device_map": {
+    "vlm.model.visual": 0,
+    "vlm.model.language_model.embed_tokens": 0,
+    "vlm.lm_head": 1,
+    "vlm.model.language_model.layers": 1,
+    "vlm.model.language_model.norm": 1,
+    "vlm.model.language_model.rotary_emb": 1,
+    "expert": 1,
+    "action_space": 1,
+    "diffusion": 1,
+    "action_in_proj": 1,
+    "action_out_proj": 1
+  },
+  "parameter_devices": [
+    "cuda:0",
+    "cuda:1"
+  ],
+  "quantized_module_count": 72,
+  "quantized_modules_sample": [
+    "vlm.model.language_model.layers.0.mlp",
+    "vlm.model.language_model.layers.0.self_attn",
+    "vlm.model.language_model.layers.1.mlp",
+    "vlm.model.language_model.layers.1.self_attn",
+    "vlm.model.language_model.layers.10.mlp",
+    "vlm.model.language_model.layers.10.self_attn",
+    "..."
+  ],
+  "expert_dtypes": [
+    "torch.float16"
+  ],
+  "lm_layer_dtypes": [
+    "torch.float16",
+    "torch.uint8"
+  ],
+  "input_device": "cuda:1",
+  "model_config_hash": "cbeadc54d16209a9",
+  "sampling": {
+    "seed": 42,
+    "top_p": 0.98,
+    "temperature": 0.6,
+    "num_traj_samples": 1,
+    "max_generation_length": 256
+  },
+  "plans_done": 8,
+  "plans_file": "/kaggle/working/m0_results/plans.json",
+  "n_plans": 8,
+  "all_finite": true,
+  "cuda_memory": [
+    {
+      "index": 0,
+      "peak_allocated_bytes": 3084179968,
+      "peak_reserved_bytes": 3147825152
+    },
+    {
+      "index": 1,
+      "peak_allocated_bytes": 13112173568,
+      "peak_reserved_bytes": 13258194944
+    }
+  ]
+}

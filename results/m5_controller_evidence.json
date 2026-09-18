@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "milestone": "M5-controller-baseline",
+  "status": "passed",
+  "full_m5_passed": false,
+  "implementation_commit": "8eff15f26b4fafb9f11c42f28f9f7ac7e7abeb6d",
+  "environment": {
+    "carla_version": "0.9.16",
+    "map": "Town01",
+    "fixed_delta_seconds": 0.05
+  },
+  "configuration": {
+    "planner": "deterministic CARLA lane-waypoint baseline",
+    "alpamayo_used": false,
+    "target_speed_mps": 5.0,
+    "replan_interval_seconds": 0.5,
+    "replan_frequency_hz": 2.0,
+    "lane_merge_distance_m": 12.0,
+    "max_abs_curvature_inv_m": 0.33,
+    "max_abs_acceleration_mps2": 9.8,
+    "model_config_hash": "9a090f58bfe1e891912c6c7e727bf85d6721a9a8ffbb630dc89446d8f37c30ea"
+  },
+  "quality_checks": {
+    "pytest": "87 passed",
+    "ruff": "All checks passed",
+    "git_diff_check": "passed"
+  },
+  "closed_loop_run": {
+    "local_trace": "results/m5_controller_60s_final/trace.jsonl",
+    "local_summary": "results/m5_controller_60s_final/summary.json",
+    "trace_sha256": "4147aac68ba58235cc07f0489637f68059c00ad0c02584b55f90e5ff7befe935",
+    "summary_sha256": "977528e56d6461c220cfbe07bc6ada6800fd9cc9c066e1eecb3d9c43e0507031",
+    "trace_bytes": 24478771,
+    "summary_bytes": 535,
+    "trace_lines": 1201,
+    "frames": 1200,
+    "simulated_seconds": 60.0,
+    "last_frame_timestamp_seconds": 59.95,
+    "distance_m": 294.28048705387334,
+    "mean_speed_mps": 4.907492842669598,
+    "max_speed_mps": 5.008601778446229,
+    "replans": 120,
+    "unsafe_replans": 0,
+    "collision_frames": [],
+    "offroad_ticks": 0,
+    "max_lane_center_error_m": 0.6036747097969055
+  },
+  "trace_validation": {
+    "frame_ids_contiguous": true,
+    "sim_times_monotonic": true,
+    "unique_plans": 120,
+    "all_plans_safe": true,
+    "max_plan_curvature_inv_m": 0.2646247147683102,
+    "max_plan_acceleration_mps2": 2.1122507590796946,
+    "max_plan_speed_mps": 5.671464471825039,
+    "controls_in_bounds": true,
+    "no_throttle_brake_overlap": true,
+    "max_abs_steer": 0.3506319337458914,
+    "max_throttle": 1.0,
+    "max_brake": 0.0
+  },
+  "cleanup": {
+    "vehicles_after_run": 0,
+    "walkers_after_run": 0,
+    "sensors_after_run": 0,
+    "synchronous_mode_after_run": false,
+    "fixed_delta_seconds_after_run": null
+  },
+  "limitations": [
+    "This validates the Pure Pursuit, PID, replanning, plan anchoring, safety gate, fail-safe, collision sensing, trace recording, and cleanup path with a deterministic CARLA waypoint planner.",
+    "It does not run Alpamayo and therefore does not satisfy the full model-in-the-loop M5 milestone.",
+    "The local 6 GiB GPU cannot host CARLA and Alpamayo-1.5-10B together; the Kaggle M0 model run remains externally blocked by the unavailable notebook secret/GPU runtime path.",
+    "The large JSONL trace and generated summary remain local and ignored; this evidence file preserves their exact paths, hashes, and measurements."
+  ]
+}
